@@ -22,7 +22,7 @@ export default function UserDetail() {
           <p className={s.email_sm}>{user.email}</p>
           <ul className={s.ul}>
             {user?.interests.map((i) => (
-              <li className={`${s.li} ${s.zoom}`}>{i}</li>
+              <li key={i} className={`${s.li} ${s.zoom}`}>{i}</li>
             ))}
           </ul>
         </div>
