@@ -1,0 +1,48 @@
+.nav {
+  background-color: white;
+  padding: 5px;
+}
+.var {
+  margin: auto;
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+[data-mode="light"] .nav {
+  background-color: black;
+}
+.menu {
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  background-color: black;
+  padding: 1px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+}
+
+[data-mode="light"] .menu {
+  background-color: white;
+}
+
+.zoom {
+  transition: transform 0.2s ease;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+
+@media screen and (max-width: 768px) {
+    .var{
+        width: 100%;
+        margin: auto;
+        padding: 0;
+    }
+}

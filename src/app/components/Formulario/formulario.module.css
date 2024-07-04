@@ -1,0 +1,154 @@
+.form {
+  margin: 1rem;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.h3 {
+  max-width: 125px;
+  margin-bottom: 0;
+}
+.input_container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.input {
+  max-width: 47%;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+
+  width: 100%; /*750px*/
+  resize: none;
+  box-sizing: border-box;
+}
+.box_input{
+  display: flex;
+  justify-content: space-between;
+}
+.input_error{
+  border-radius: 5px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 100px;
+  transition: background-color 0.3s ease;
+  animation: parpadeo 1s infinite alternate;
+}
+.alert_succes{
+  margin: auto;
+  background-color: #4dd40a;
+  width: 40%;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+.alert_error{
+  margin: auto;
+  background-color: #c50000;
+  width: 40%;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+.input_submit {
+  border-radius: 5px;
+  background-color: #1d9bf0;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 80px;
+  transition: background-color 0.3s ease;
+  animation: parpadeo 1s infinite alternate;
+}
+.input_submit:hover {
+  background-color: white;
+  color: black;
+  animation: parpadeo 0.3s infinite alternate-reverse;
+  animation: parpadeo-color 0.65s infinite ease-in;
+}
+[data-mode="light"] .input_submit:hover {
+  background-color: black;
+  color: white;
+  animation: parpadeo-color-light 0.65s infinite ease-in;
+
+}
+@keyframes parpadeo {
+  0% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+@keyframes parpadeo-color {
+  0% {
+    background-color: #1d9bf0;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
+@keyframes parpadeo-color-light {
+  0% {
+    background-color: #1d9bf0;
+  }
+  100% {
+    background-color: black;
+  }
+}
+.zoom {
+  transition: transform 0.2s ease;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    margin: 0;
+    padding: 0 10px 10px 10px;
+  }
+  .textarea {
+    width: 100%;
+  }
+  .h3 {
+    margin: 0;
+    font-size: 16px;
+  }
+  .input_container {
+    gap: 10px;
+  }
+  .input {
+    padding: 0.3rem;
+  }
+  .textarea {
+    padding: 0.3rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .textarea {
+    width: 100%;
+  }
+  .input_container {
+    gap: 10px;
+  }
+  .form {
+    margin-top: 0;
+  }
+}
