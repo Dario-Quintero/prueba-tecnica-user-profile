@@ -1,41 +1,8 @@
 "use client";
-import { Resend } from "resend";
 import { useEffect, useState } from "react";
 import s from "./formulario.module.css";
+import { validate } from "./validate";
 
-export function validate(form: {
-  nombre: string;
-  email: string;
-  mensaje: string;
-}) {
-  let error = "";
-
-  if (!form.nombre) {
-    error = "El nombre es obligatorio";
-    return error;
-  } else if (form.nombre.length <= 4) {
-    error = "Ingrese un nombre completo";
-    return error;
-  }
-
-  if (!form.email) {
-    error = "El correo electrónico es obligatorio";
-    return error;
-  } else if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(form.email)) {
-    error = "Ingrese una dirección de correo electrónico válida";
-    return error;
-  }
-
-  if (!form.mensaje) {
-    error = "El mensaje es obligatorio";
-    return error;
-  } else if (form.mensaje.length < 10) {
-    error = "El mensaje debe tener al menos 10 caracteres";
-    return error;
-  }
-
-  return error;
-}
 export default function Formulario() {
   const [Alert, setAlert] = useState("");
   const [Form, setForm] = useState({
@@ -44,9 +11,9 @@ export default function Formulario() {
     mensaje: "",
   });
 
-  const resend = new Resend("re_Zpz4Zhtf_MXFWzZRS53MJGoPDub8Ht2LG");
-
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     if (!Form.email && !Form.mensaje && !Form.nombre) {
       setAlert("Complete todos los campos");
@@ -56,13 +23,23 @@ export default function Formulario() {
         setAlert(error);
       } else {
         setAlert("Mensaje enviado correctamente");
-        resend.emails.send({
-          from: "onboarding@resend.dev",
-          to: "darioquintero73@hotmail.com", // Form.email
-          subject: `Email enviado desde la prueba tecnica de Dario Quintero`,
-          html: `<p>Autor: ${Form.nombre}
-          Mensaje:${Form.mensaje}</p>`,
+
+        //! Peticion
+        const res = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Form),
         });
+
+        if(res.status === 200){
+          console.log(res.body)
+        }else{
+          console.log(`ERROR - ${res}`)
+          setAlert("Error al enviar el mensaje")
+        }
+
         setForm({
           nombre: "",
           email: "",

@@ -27,7 +27,7 @@
   border-radius: 4px;
   padding: 0.5rem;
 
-  width: 100%; /*750px*/
+  width: 100%; 
   resize: none;
   box-sizing: border-box;
 }
