@@ -7,7 +7,7 @@ export function validate(form: {
   nombre: string;
   email: string;
   mensaje: string;
-}){
+}) {
   let error = "";
 
   if (!form.nombre) {
@@ -35,7 +35,7 @@ export function validate(form: {
   }
 
   return error;
-};
+}
 export default function Formulario() {
   const [Alert, setAlert] = useState("");
   const [Form, setForm] = useState({
@@ -58,9 +58,10 @@ export default function Formulario() {
         setAlert("Mensaje enviado correctamente");
         resend.emails.send({
           from: "onboarding@resend.dev",
-          to: Form.email,
-          subject: `Email enviado desde la prueba tecnica de Dario Quintero para ${Form.nombre} `,
-          html: `<p>${Form.mensaje}</p>`,
+          to: "darioquintero73@hotmail.com", // Form.email
+          subject: `Email enviado desde la prueba tecnica de Dario Quintero`,
+          html: `<p>Autor: ${Form.nombre}
+          Mensaje:${Form.mensaje}</p>`,
         });
         setForm({
           nombre: "",
